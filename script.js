@@ -1,9 +1,8 @@
-alert("JS 살아있음");
 let users = JSON.parse(localStorage.getItem("users")) || {};
 let currentUser = null;
 let score = 0;
 
-// 회원가입
+/* 회원가입 */
 function signup() {
   let id = document.getElementById("id").value;
   let pw = document.getElementById("pw").value;
@@ -19,7 +18,7 @@ function signup() {
   alert("회원가입 완료!");
 }
 
-// 로그인
+/* 로그인 */
 function login() {
   let id = document.getElementById("id").value;
   let pw = document.getElementById("pw").value;
@@ -46,7 +45,7 @@ function coreClick(e) {
   createWave(e);
 }
 
-/* 점수 증가 */
+/* 점수 */
 function addScore() {
   if (!currentUser) return;
 
@@ -57,13 +56,6 @@ function addScore() {
   localStorage.setItem("users", JSON.stringify(users));
 
   document.getElementById("score").innerText = score;
-
-  // 50 효과
-  if (score % 50 === 0) {
-    let core = document.getElementById("core");
-    core.classList.add("pop");
-    setTimeout(() => core.classList.remove("pop"), 300);
-  }
 
   updateUI();
 }
@@ -81,16 +73,16 @@ function createWave(e) {
   setTimeout(() => wave.remove(), 600);
 }
 
-/* UI 업데이트 */
+/* 🏆 UI */
 function updateUI() {
 
   let sorted = Object.entries(users)
     .sort((a,b)=>b[1].score - a[1].score);
 
-  // 랭킹
   let html = "";
 
   sorted.forEach((u,i)=>{
+
     let medal = "";
     if (i===0) medal="🥇";
     if (i===1) medal="🥈";
@@ -101,7 +93,6 @@ function updateUI() {
 
   document.getElementById("ranking").innerHTML = html;
 
-  // TOP3 효과
   let items = document.querySelectorAll("#ranking div");
 
   items.forEach((el,i)=>{
@@ -111,14 +102,4 @@ function updateUI() {
     if(i===1) el.classList.add("top2");
     if(i===2) el.classList.add("top3");
   });
-
-  // 그래프
-  let g = "";
-
-  sorted.forEach(u=>{
-    g += `<div>${u[0]}</div>
-          <div class="bar" style="width:${u[1].score}px"></div>`;
-  });
-
-  document.getElementById("graph").innerHTML = g;
 }
