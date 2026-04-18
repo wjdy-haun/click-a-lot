@@ -13,9 +13,9 @@ input, button {
 
 /* 🔵 에너지 코어 */
 #core {
-  width: 200px;
-  height: 200px;
-  margin: 20px auto;
+  width: 220px;
+  height: 220px;
+  margin: 30px auto;
 
   border-radius: 50%;
   background: radial-gradient(circle, #00ffcc, #0066ff);
@@ -24,74 +24,25 @@ input, button {
   justify-content: center;
   align-items: center;
 
-  color: white;
   font-size: 40px;
   font-weight: bold;
+  color: white;
 
   cursor: pointer;
   position: relative;
 
-  box-shadow: 0 0 20px #00ffcc;
+  box-shadow: 0 0 25px #00ffcc;
   animation: pulse 2s infinite;
 }
 
 /* 숨쉬는 효과 */
 @keyframes pulse {
-  0% { transform: scale(1); box-shadow: 0 0 20px #00ffcc; }
-  50% { transform: scale(1.05); box-shadow: 0 0 40px #00ffcc; }
-  100% { transform: scale(1); box-shadow: 0 0 20px #00ffcc; }
-}
-
-/* 50 클릭 효과 */
-.pop {
-  animation: pop 0.3s;
-}
-
-@keyframes pop {
   0% { transform: scale(1); }
-  50% { transform: scale(1.3); background: gold; }
+  50% { transform: scale(1.05); box-shadow: 0 0 40px #00ffcc; }
   100% { transform: scale(1); }
 }
 
-/* TOP3 */
-.top1 {
-  color: gold;
-  font-weight: bold;
-  text-shadow: 0 0 10px gold;
-  animation: glow1 1s infinite alternate;
-}
-
-.top2 {
-  color: silver;
-  font-weight: bold;
-  text-shadow: 0 0 8px silver;
-}
-
-.top3 {
-  color: #cd7f32;
-  font-weight: bold;
-  text-shadow: 0 0 6px #cd7f32;
-}
-
-@keyframes glow1 {
-  from { transform: scale(1.05); }
-  to { transform: scale(1.1); }
-}
-
-/* 랭킹 안정화 */
-#ranking div {
-  user-select: none;
-  line-height: 1.6;
-}
-
-/* 그래프 */
-.bar {
-  height: 10px;
-  background: #4CAF50;
-  margin: 3px auto;
-}
-
-/* 🌊 파동 */
+/* 클릭 파동 */
 .wave {
   position: fixed;
   border: 2px solid #00ffcc;
@@ -103,5 +54,27 @@ input, button {
 
 @keyframes waveAnim {
   from { width: 20px; height: 20px; opacity: 1; }
-  to { width: 200px; height: 200px; opacity: 0; }
+  to { width: 220px; height: 220px; opacity: 0; }
+}
+
+/* TOP3 */
+.top1 {
+  color: gold;
+  font-weight: bold;
+}
+
+.top2 {
+  color: silver;
+  font-weight: bold;
+}
+
+.top3 {
+  color: #cd7f32;
+  font-weight: bold;
+}
+
+/* 랭킹 */
+#ranking div {
+  padding: 4px;
+  user-select: none;
 }
