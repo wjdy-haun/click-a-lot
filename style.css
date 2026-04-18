@@ -90,3 +90,6 @@ input, button {
   background: #4CAF50;
   margin: 3px auto;
 }
+body {
+  overflow-x: hidden;
+}
