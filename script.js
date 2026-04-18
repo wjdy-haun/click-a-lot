@@ -9,6 +9,11 @@ function signup() {
 
   if (!id || !pw) return alert("입력!");
 
+  if (users[id]) {
+    alert("이미 있는 아이디");
+    return;
+  }
+
   users[id] = { pw: pw, score: 0 };
 
   localStorage.setItem("users", JSON.stringify(users));
@@ -29,7 +34,7 @@ function login() {
     document.getElementById("auth").style.display = "none";
     document.getElementById("game").style.display = "block";
 
-    document.getElementById("welcome").innerText = id + "님";
+    document.getElementById("welcome").innerText = id + "님 환영!";
 
     updateUI();
   } else {
@@ -39,6 +44,8 @@ function login() {
 
 // 클릭
 function clickBox() {
+  if (!currentUser) return;
+
   score++;
 
   users[currentUser].score = score;
@@ -47,7 +54,7 @@ function clickBox() {
 
   document.getElementById("score").innerText = score;
 
-  // 50 단위 애니메이션
+  // 50단위 애니메이션
   if (score % 50 === 0) {
     let box = document.getElementById("box");
     box.classList.add("pop");
@@ -60,7 +67,7 @@ function clickBox() {
   updateUI();
 }
 
-// 랭킹 + 그래프
+// UI 업데이트
 function updateUI() {
 
   let sorted = Object.entries(users).sort((a,b)=>b[1].score - a[1].score);
@@ -68,18 +75,22 @@ function updateUI() {
   // 랭킹
   let html = "";
   sorted.forEach((u,i)=>{
-    html += (i+1)+"위 "+u[0]+" : "+u[1].score+"<br>";
+    let medal = "";
+    if (i===0) medal="🥇";
+    if (i===1) medal="🥈";
+    if (i===2) medal="🥉";
+
+    html += `<div>${medal} ${u[0]} : ${u[1].score}</div>`;
   });
 
   document.getElementById("ranking").innerHTML = html;
 
   // 그래프
-  let graph = "";
-
+  let g = "";
   sorted.forEach(u=>{
-    graph += `<div>${u[0]}</div>
-              <div class="bar" style="width:${u[1].score}px"></div>`;
+    g += `<div>${u[0]}</div>
+          <div class="bar" style="width:${u[1].score}px"></div>`;
   });
 
-  document.getElementById("graph").innerHTML = graph;
+  document.getElementById("graph").innerHTML = g;
 }
