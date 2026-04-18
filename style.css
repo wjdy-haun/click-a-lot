@@ -59,3 +59,39 @@ button {
   background: #4CAF50;
   margin: 3px auto;
 }
+.top1 {
+  color: gold;
+  font-weight: bold;
+  text-shadow: 0 0 10px gold;
+  animation: glow1 1s infinite alternate;
+}
+
+.top2 {
+  color: silver;
+  font-weight: bold;
+  text-shadow: 0 0 8px silver;
+  animation: glow2 1s infinite alternate;
+}
+
+.top3 {
+  color: #cd7f32;
+  font-weight: bold;
+  text-shadow: 0 0 6px #cd7f32;
+  animation: glow3 1s infinite alternate;
+}
+
+/* 1~3위 살짝 반짝 효과 */
+@keyframes glow1 {
+  from { transform: scale(1); }
+  to { transform: scale(1.05); }
+}
+
+@keyframes glow2 {
+  from { transform: scale(1); }
+  to { transform: scale(1.03); }
+}
+
+@keyframes glow3 {
+  from { transform: scale(1); }
+  to { transform: scale(1.02); }
+}
