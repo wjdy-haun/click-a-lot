@@ -1,3 +1,4 @@
+alert("JS 연결 확인됨");
 let users = JSON.parse(localStorage.getItem("users")) || {};
 let currentUser = null;
 let score = 0;
