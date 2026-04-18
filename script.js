@@ -85,6 +85,7 @@ function updateUI() {
   });
 
   document.getElementById("ranking").innerHTML = html;
+  applyTop3Effect();
 
   // 그래프
   let g = "";
