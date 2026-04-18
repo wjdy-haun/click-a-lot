@@ -103,3 +103,40 @@ function updateUI() {
 
   document.getElementById("graph").innerHTML = g;
 }
+function clickEffect(x, y) {
+  const dot = document.createElement("div");
+
+  dot.style.position = "fixed";
+  dot.style.left = x + "px";
+  dot.style.top = y + "px";
+  dot.style.width = "8px";
+  dot.style.height = "8px";
+  dot.style.background = "gold";
+  dot.style.borderRadius = "50%";
+  dot.style.pointerEvents = "none";
+
+  document.body.appendChild(dot);
+
+  let angle = Math.random() * 360;
+  let speed = Math.random() * 5 + 2;
+
+  let vx = Math.cos(angle) * speed;
+  let vy = Math.sin(angle) * speed;
+
+  let life = 30;
+
+  let anim = setInterval(() => {
+    x += vx;
+    y += vy;
+    dot.style.left = x + "px";
+    dot.style.top = y + "px";
+
+    life--;
+    dot.style.opacity = life / 30;
+
+    if (life <= 0) {
+      clearInterval(anim);
+      dot.remove();
+    }
+  }, 16);
+}
