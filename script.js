@@ -1,11 +1,10 @@
-console.log("JS 실행됨");
 let username = "";
 let score = 0;
 
 let data = JSON.parse(localStorage.getItem("rank")) || {};
 
-// 시작
-function startGame() {
+// 로그인
+function login() {
   username = document.getElementById("username").value;
 
   if (!username) {
@@ -13,13 +12,13 @@ function startGame() {
     return;
   }
 
-  document.getElementById("setup").style.display = "none";
+  document.getElementById("login").style.display = "none";
   document.getElementById("game").style.display = "block";
 
-  document.getElementById("welcome").innerText = username + "님 환영합니다!";
+  document.getElementById("welcome").innerText = username + "님 환영!";
 }
 
-// 클릭 점수 증가
+// 점수 증가
 function addScore() {
   score++;
 
@@ -45,11 +44,7 @@ function updateRank() {
     if (index === 1) medal = "🥈";
     if (index === 2) medal = "🥉";
 
-    html += `
-      <div>
-        ${medal} ${item[0]} : ${item[1]}
-      </div>
-    `;
+    html += `<div>${medal} ${item[0]} : ${item[1]}</div>`;
   });
 
   document.getElementById("ranking").innerHTML = html;
