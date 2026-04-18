@@ -9,7 +9,7 @@ function signup() {
 
   if (!id || !pw) return alert("입력!");
 
-  if (users[id]) return alert("이미 존재하는 아이디");
+  if (users[id]) return alert("이미 존재");
 
   users[id] = { pw: pw, score: 0 };
 
@@ -31,7 +31,7 @@ function login() {
     document.getElementById("auth").style.display = "none";
     document.getElementById("game").style.display = "block";
 
-    document.getElementById("welcome").innerText = id + "님 환영!";
+    document.getElementById("welcome").innerText = id + "님";
 
     updateUI();
   } else {
@@ -39,8 +39,14 @@ function login() {
   }
 }
 
-// 클릭
-function clickBox() {
+/* 🔵 코어 클릭 */
+function coreClick(e) {
+  addScore();
+  createWave(e);
+}
+
+/* 점수 증가 */
+function addScore() {
   if (!currentUser) return;
 
   score++;
@@ -51,18 +57,30 @@ function clickBox() {
 
   document.getElementById("score").innerText = score;
 
-  // 50 클릭 효과
+  // 50 효과
   if (score % 50 === 0) {
-    let box = document.getElementById("box");
-    box.classList.add("pop");
-
-    setTimeout(() => box.classList.remove("pop"), 300);
+    let core = document.getElementById("core");
+    core.classList.add("pop");
+    setTimeout(() => core.classList.remove("pop"), 300);
   }
 
   updateUI();
 }
 
-// UI 업데이트
+/* 🌊 파동 */
+function createWave(e) {
+  const wave = document.createElement("div");
+  wave.className = "wave";
+
+  wave.style.left = e.clientX + "px";
+  wave.style.top = e.clientY + "px";
+
+  document.body.appendChild(wave);
+
+  setTimeout(() => wave.remove(), 600);
+}
+
+/* UI 업데이트 */
 function updateUI() {
 
   let sorted = Object.entries(users)
@@ -82,7 +100,7 @@ function updateUI() {
 
   document.getElementById("ranking").innerHTML = html;
 
-  // TOP3 효과 적용
+  // TOP3 효과
   let items = document.querySelectorAll("#ranking div");
 
   items.forEach((el,i)=>{
@@ -102,41 +120,4 @@ function updateUI() {
   });
 
   document.getElementById("graph").innerHTML = g;
-}
-function clickEffect(x, y) {
-  const dot = document.createElement("div");
-
-  dot.style.position = "fixed";
-  dot.style.left = x + "px";
-  dot.style.top = y + "px";
-  dot.style.width = "8px";
-  dot.style.height = "8px";
-  dot.style.background = "gold";
-  dot.style.borderRadius = "50%";
-  dot.style.pointerEvents = "none";
-
-  document.body.appendChild(dot);
-
-  let angle = Math.random() * 360;
-  let speed = Math.random() * 5 + 2;
-
-  let vx = Math.cos(angle) * speed;
-  let vy = Math.sin(angle) * speed;
-
-  let life = 30;
-
-  let anim = setInterval(() => {
-    x += vx;
-    y += vy;
-    dot.style.left = x + "px";
-    dot.style.top = y + "px";
-
-    life--;
-    dot.style.opacity = life / 30;
-
-    if (life <= 0) {
-      clearInterval(anim);
-      dot.remove();
-    }
-  }, 16);
 }
