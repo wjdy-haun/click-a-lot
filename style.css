@@ -97,3 +97,17 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+#ranking div {
+  border: none;
+  margin: 0;
+  padding: 4px 0;
+  box-sizing: border-box;
+}
+
+#ranking {
+  line-height: 1.6;
+}
+
+body {
+  overflow-x: hidden;
+}
