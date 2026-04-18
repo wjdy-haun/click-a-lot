@@ -6,10 +6,20 @@ body {
 }
 
 input {
-  margin: 5px;
   padding: 8px;
+  margin: 5px;
 }
 
+button {
+  padding: 8px 12px;
+  border: none;
+  background: #4CAF50;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 클릭 박스 */
 #box {
   width: 200px;
   height: 200px;
@@ -32,7 +42,7 @@ input {
   transform: scale(0.95);
 }
 
-/* 50클릭 효과 */
+/* 50클릭 애니메이션 */
 .pop {
   animation: pop 0.3s;
 }
@@ -47,5 +57,5 @@ input {
 .bar {
   height: 10px;
   background: #4CAF50;
-  margin: 3px;
+  margin: 3px auto;
 }
