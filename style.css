@@ -93,3 +93,7 @@ input, button {
 body {
   overflow-x: hidden;
 }
+#ranking, #graph {
+  max-width: 100%;
+  overflow-x: hidden;
+}
