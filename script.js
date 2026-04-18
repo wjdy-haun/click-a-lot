@@ -1,3 +1,4 @@
+alert("JS 살아있음");
 let users = JSON.parse(localStorage.getItem("users")) || {};
 let currentUser = null;
 let score = 0;
