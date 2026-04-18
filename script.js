@@ -1,3 +1,4 @@
+console.log("JS 실행됨");
 let username = "";
 let score = 0;
 
