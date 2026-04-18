@@ -95,3 +95,14 @@ function updateUI() {
 
   document.getElementById("graph").innerHTML = g;
 }
+function applyTop3Effect() {
+  let items = document.querySelectorAll("#ranking div");
+
+  items.forEach((el, index) => {
+    el.classList.remove("top1", "top2", "top3");
+
+    if (index === 0) el.classList.add("top1");
+    if (index === 1) el.classList.add("top2");
+    if (index === 2) el.classList.add("top3");
+  });
+}
