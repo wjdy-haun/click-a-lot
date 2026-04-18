@@ -1,4 +1,3 @@
-alert("JS 연결 확인됨");
 let users = JSON.parse(localStorage.getItem("users")) || {};
 let currentUser = null;
 let score = 0;
@@ -10,10 +9,7 @@ function signup() {
 
   if (!id || !pw) return alert("입력!");
 
-  if (users[id]) {
-    alert("이미 있는 아이디");
-    return;
-  }
+  if (users[id]) return alert("이미 존재하는 아이디");
 
   users[id] = { pw: pw, score: 0 };
 
@@ -55,14 +51,12 @@ function clickBox() {
 
   document.getElementById("score").innerText = score;
 
-  // 50단위 애니메이션
+  // 50 클릭 효과
   if (score % 50 === 0) {
     let box = document.getElementById("box");
     box.classList.add("pop");
 
-    setTimeout(() => {
-      box.classList.remove("pop");
-    }, 300);
+    setTimeout(() => box.classList.remove("pop"), 300);
   }
 
   updateUI();
@@ -71,10 +65,12 @@ function clickBox() {
 // UI 업데이트
 function updateUI() {
 
-  let sorted = Object.entries(users).sort((a,b)=>b[1].score - a[1].score);
+  let sorted = Object.entries(users)
+    .sort((a,b)=>b[1].score - a[1].score);
 
   // 랭킹
   let html = "";
+
   sorted.forEach((u,i)=>{
     let medal = "";
     if (i===0) medal="🥇";
@@ -85,25 +81,25 @@ function updateUI() {
   });
 
   document.getElementById("ranking").innerHTML = html;
-  applyTop3Effect();
+
+  // TOP3 효과 적용
+  let items = document.querySelectorAll("#ranking div");
+
+  items.forEach((el,i)=>{
+    el.classList.remove("top1","top2","top3");
+
+    if(i===0) el.classList.add("top1");
+    if(i===1) el.classList.add("top2");
+    if(i===2) el.classList.add("top3");
+  });
 
   // 그래프
   let g = "";
+
   sorted.forEach(u=>{
     g += `<div>${u[0]}</div>
           <div class="bar" style="width:${u[1].score}px"></div>`;
   });
 
   document.getElementById("graph").innerHTML = g;
-}
-function applyTop3Effect() {
-  let items = document.querySelectorAll("#ranking div");
-
-  items.forEach((el, index) => {
-    el.classList.remove("top1", "top2", "top3");
-
-    if (index === 0) el.classList.add("top1");
-    if (index === 1) el.classList.add("top2");
-    if (index === 2) el.classList.add("top3");
-  });
 }
