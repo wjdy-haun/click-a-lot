@@ -3,18 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Click Rank Game</title>
+<title>Click Rank Pro</title>
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>🔥 클릭 랭킹 게임</h1>
+<h1>🔥 Click Rank Pro</h1>
 
-<!-- 로그인 -->
-<div id="login">
-  <input id="username" placeholder="이름 입력">
+<!-- 회원가입 -->
+<div id="auth">
+
+  <input id="id" placeholder="아이디">
+  <input id="pw" type="password" placeholder="비밀번호">
+
+  <button onclick="signup()">회원가입</button>
   <button onclick="login()">로그인</button>
+
 </div>
 
 <!-- 게임 -->
@@ -22,9 +27,11 @@
 
   <h2 id="welcome"></h2>
 
-  <div id="box" onclick="addScore()">
+  <div id="box" onclick="clickBox()">
     <div id="score">0</div>
   </div>
+
+  <div id="graph"></div>
 
   <h3>🏆 랭킹</h3>
   <div id="ranking"></div>
