@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Click Rank Game</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>🔥 클릭 랭킹 게임</h1>
+
+<div id="setup">
+  <p>이름을 입력하세요</p>
+  <input id="username" placeholder="이름">
+  <button onclick="startGame()">시작</button>
+</div>
+
+<div id="game" style="display:none;">
+
+  <h2 id="welcome"></h2>
+
+  <div id="box" onclick="addScore()">
+    <span id="score">0</span>
+  </div>
+
+  <h3>🏆 랭킹</h3>
+  <div id="ranking"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
