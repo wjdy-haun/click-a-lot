@@ -95,3 +95,6 @@ button {
   from { transform: scale(1); }
   to { transform: scale(1.02); }
 }
+#ranking div {
+  user-select: none;
+}
